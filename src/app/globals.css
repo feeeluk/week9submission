@@ -31,3 +31,20 @@ body {
     text-wrap: balance;
   }
 }
+
+.navBar{
+  font-family: var(--anton);
+  background-color: lightgrey;
+}
+
+.footer{
+  font-family: var(--anton);
+  background-color: lightgrey;
+  width: 100%;
+  text-align: center;
+}
+
+h5{
+  color: azure;
+  background: rgba(0, 0, 0, .5);
+}

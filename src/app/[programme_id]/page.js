@@ -1,22 +1,34 @@
 import { connect } from "@/utilities/connect"
 import Image from "next/image"
 import Link from "next/link"
+import { notFound } from "next/navigation"
 //import { LikeButton } from "@/components/LikeButton"
 
 export default async function ProgrammePage({params}){
-    const db = connect()
-    const programmeInfo = (await db.query(`SELECT *
-                                        FROM programmes
-                                        JOIN categories ON programme_category_id = categories.category_id
-                                        WHERE programme_id = $1`, [params.programme_id])).rows[0]
 
-    const programmeEpisodes = (await db.query(`SELECT seasons.season_id AS sn_id, seasons.season_name AS sn_name, episodes.episode_id AS e_id, episodes.episode_name AS e_name, episodes.episode_image AS e_image
-                                        FROM programmes
-                                        JOIN seasons ON programmes.programme_id = seasons.programme_id
-                                        JOIN episodes ON seasons.season_id = episodes.season_id
-                                        WHERE programmes.programme_id = $1
-                                        GROUP BY sn_id, sn_name, e_id, e_name, e_image
-                                        ORDER BY sn_id, e_id`, [params.programme_id])).rows
+
+    let programmeInfo;
+    let programmeEpisodes;
+
+    try{
+        const db = connect()
+        const programmeInfo = (await db.query(`SELECT *
+                                            FROM programmes
+                                            JOIN categories ON programme_category_id = categories.category_id
+                                            WHERE programme_id = $1`, [params.programme_id])).rows[0]
+    
+        const programmeEpisodes = (await db.query(`SELECT seasons.season_id AS sn_id, seasons.season_name AS sn_name, episodes.episode_id AS e_id, episodes.episode_name AS e_name, episodes.episode_image AS e_image
+                                            FROM programmes
+                                            JOIN seasons ON programmes.programme_id = seasons.programme_id
+                                            JOIN episodes ON seasons.season_id = episodes.season_id
+                                            WHERE programmes.programme_id = $1
+                                            GROUP BY sn_id, sn_name, e_id, e_name, e_image
+                                            ORDER BY sn_id, e_id`, [params.programme_id])).rows
+    }
+
+    catch (error){
+        notFound()
+    }
 
     return(
         <>

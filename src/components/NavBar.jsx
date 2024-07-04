@@ -13,7 +13,7 @@ export function NavBar(){
                 <Link href="/">Home </Link>
                 |
                 <Link href="/about-us"> About </Link>
-                 |
+                 | 
                 <SignedOut>
                     <SignInButton />
                 </SignedOut>

@@ -13,8 +13,8 @@ export function NavBar(){
                 <Link href="/">Home </Link>
                 |
                 <Link href="/about-us"> About </Link>
-                 | 
-                 {/* comment */}
+                | &nbsp;
+
                 <SignedOut>
                     <SignInButton />
                 </SignedOut>

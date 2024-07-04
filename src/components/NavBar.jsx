@@ -14,6 +14,7 @@ export function NavBar(){
                 |
                 <Link href="/about-us"> About </Link>
                  | 
+                 {/* comment */}
                 <SignedOut>
                     <SignInButton />
                 </SignedOut>

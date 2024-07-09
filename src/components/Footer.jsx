@@ -8,6 +8,8 @@ export function Footer(){
                 <Link href="/add-programme">Add Programme</Link>
                 &nbsp;|&nbsp;
                 <Link href="/add-category">Add Category</Link>
+                &nbsp;|&nbsp;
+                <Link href="/comments">Comments</Link>
             </div>
                   
         </div>

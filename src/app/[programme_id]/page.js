@@ -6,18 +6,17 @@ import { notFound } from "next/navigation"
 
 export default async function ProgrammePage({params}){
 
-
     let programmeInfo;
     let programmeEpisodes;
 
     try{
         const db = connect()
-        const programmeInfo = (await db.query(`SELECT *
+        programmeInfo = (await db.query(`SELECT *
                                             FROM programmes
                                             JOIN categories ON programme_category_id = categories.category_id
                                             WHERE programme_id = $1`, [params.programme_id])).rows[0]
     
-        const programmeEpisodes = (await db.query(`SELECT seasons.season_id AS sn_id, seasons.season_name AS sn_name, episodes.episode_id AS e_id, episodes.episode_name AS e_name, episodes.episode_image AS e_image
+        programmeEpisodes = (await db.query(`SELECT seasons.season_id AS sn_id, seasons.season_name AS sn_name, episodes.episode_id AS e_id, episodes.episode_name AS e_name, episodes.episode_image AS e_image
                                             FROM programmes
                                             JOIN seasons ON programmes.programme_id = seasons.programme_id
                                             JOIN episodes ON seasons.season_id = episodes.season_id
@@ -32,6 +31,7 @@ export default async function ProgrammePage({params}){
 
     return(
         <>
+        {/* {console.log(programmeInfo)} */}
             <div>
                 <h1>Name: {programmeInfo.programme_name}</h1>
                 <h1>Description: {programmeInfo.programme_description}</h1>
@@ -39,7 +39,7 @@ export default async function ProgrammePage({params}){
                 <Link href={`/${programmeInfo.programme_id}/edit`}>                
                     <Image height={400} width={250} src={programmeInfo.programme_image} />
                 </Link>
-                {/* <LikeButton /> */}
+
             </div>
 
             <div>Episodes:

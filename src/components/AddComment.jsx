@@ -1,7 +1,10 @@
 import { connect } from "@/utilities/connect"
 import { revalidatePath } from "next/cache"
+import { auth } from "@clerk/nextjs/server"
 
 export function AddComment(params){
+
+    const {userId} = auth()
 
     async function handleAddComment(formData){
         'use server'
@@ -10,8 +13,8 @@ export function AddComment(params){
         const episode = params.episode
 
         const db = connect()
-        db.query(`INSERT INTO comments (comment, episode_id)
-                VALUES ($1, $2)`, [comment, episode])
+        db.query(`INSERT INTO comments (comment, episode_id, clerk_id)
+                VALUES ($1, $2, $3)`, [comment, episode, userId])
         
         revalidatePath(`${params.programme}/${params.episode}`)
          

@@ -1,6 +1,7 @@
 import { connect } from "@/utilities/connect"
 import { auth } from "@clerk/nextjs/server"
 import { redirect } from "next/navigation"
+import { revalidatePath } from "next/cache"
 
 export default function Page() {
 
@@ -15,17 +16,13 @@ export default function Page() {
 
         try{
             db.query(`INSERT INTO users (clerk_id, username, bio, location)
-                        VALUES ($1, $2, $3, $4)`, [userId, username, bio, location])
-
-            redirectUser(userId)
+                        VALUES ($1, $2, $3, $4)`, [userId, username, bio, location])  
         }
 
         catch(error){
         }
-    }
-
-    function redirectUser(user){
-        redirect(`/users/user-profile/${user}`)
+        
+        redirect(`/users/user-profile/${userId}`)
     }
 
     return(

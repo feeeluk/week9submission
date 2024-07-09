@@ -16,7 +16,7 @@ export const metadata = {
     description: "Use of auth in Next.js",
     type: "website",
     url: "https://week9submission.vercel.app/",
-    image: ["/TVshows.png"], // add an appropriate image to your public folder
+    images: ["/TVshows.png"], // add an appropriate image to your public folder
   },
 };
 

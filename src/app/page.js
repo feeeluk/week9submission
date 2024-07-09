@@ -14,9 +14,6 @@ export default async function Home({searchParams}) {
   setDefaultSort()
   setDefaultFilter()
 
-  //console.log("sortby: " + searchParamsSort)
-  //console.log("filterby: " + searchParamsFilter)
-
   function setDefaultSort(){
 
     if(searchParams.sortby === "asc"){

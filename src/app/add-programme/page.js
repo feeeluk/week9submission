@@ -6,7 +6,7 @@ export default async function AddProgramme(){
 
     const db = connect()
 
-    const categories = (await db.query(`SELECT DISTINCT *
+    const categories = (await db.query(`SELECT *
         FROM categories
         ORDER BY category_name asc`)).rows
 

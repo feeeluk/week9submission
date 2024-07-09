@@ -16,7 +16,7 @@ export function NavBar(){
                 | &nbsp;
 
                 <SignedOut>
-                    <SignInButton />
+                    <SignInButton mode="modal" />
                 </SignedOut>
 
                 <SignedIn>

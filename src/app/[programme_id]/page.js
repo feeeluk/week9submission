@@ -31,7 +31,7 @@ export default async function ProgrammePage({params}){
 
     return(
         <>
-        {/* {console.log(programmeInfo)} */}
+
             <div>
                 <h1>Name: {programmeInfo.programme_name}</h1>
                 <h1>Description: {programmeInfo.programme_description}</h1>

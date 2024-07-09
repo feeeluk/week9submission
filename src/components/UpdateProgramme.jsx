@@ -35,9 +35,9 @@ export async function UpdateProgramme({params}){
 
             <form action={handleUpdateProgramme} className="flex flex-col">
 
-                <input id="programme_name" name="programme_name" class="" type="text" placeholder={programme.programme_name}></input>
-                <input id="programme_image" name="programme_image" class="" type="text" placeholder={programme.programme_image}></input>
-                <input id="programme_description" name="programme_description" class="" placeholder={programme.programme_description}></input>
+                <input id="programme_name" name="programme_name" class="" type="text" defaultValue={programme.programme_name}></input>
+                <input id="programme_image" name="programme_image" class="" type="text" defaultValue={programme.programme_image}></input>
+                <input id="programme_description" name="programme_description" class="" defaultValue={programme.programme_description}></input>
 
                 <select id="programme_category_id" name="programme_category_id" className="" defaultValue={`${programme.programme_category_id}`}>
 

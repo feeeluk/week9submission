@@ -17,14 +17,14 @@ export default function Page() {
             db.query(`INSERT INTO users (clerk_id, username, bio, location)
                         VALUES ($1, $2, $3, $4)`, [userId, username, bio, location])
 
-            redirect(userId)
+            redirectUser(userId)
         }
 
         catch(error){
         }
     }
 
-    function redirect(user){
+    function redirectUser(user){
         redirect(`/users/user-profile/${user}`)
     }
 
